@@ -1,21 +1,65 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientApp.Views.AddClientPage"
-             Title="Add New Client">
+             Title="Add New Client"
+             BackgroundColor="#F5F7FA">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="30" Spacing="18">
 
-            <Label Text="Add New Client" FontSize="28" HorizontalOptions="Center" />
+            <Label Text="Add New Client"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="#002554"
+                   HorizontalOptions="Center" />
 
-            <Entry Placeholder="First Name" Text="{Binding Name}" />
-            <Entry Placeholder="Last Name" Text="{Binding Lastname}" />
-            <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding Age}" />
-            <Entry Placeholder="Address" Text="{Binding Address}" />
+            <Border Stroke="#CCCCCC" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10">
+                <Entry Placeholder="First Name"
+                       Text="{Binding Name}"
+                       BackgroundColor="Transparent"
+                       PlaceholderColor="#888"
+                       TextColor="#222" />
+            </Border>
 
-            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                <Button Text="Save" Command="{Binding SaveCommand}" />
-                <Button Text="Cancel" Command="{Binding CancelCommand}" />
+            <Border Stroke="#CCCCCC" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10">
+                <Entry Placeholder="Last Name"
+                       Text="{Binding Lastname}"
+                       BackgroundColor="Transparent"
+                       PlaceholderColor="#888"
+                       TextColor="#222" />
+            </Border>
+
+            <Border Stroke="#CCCCCC" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10">
+                <Entry Placeholder="Age"
+                       Keyboard="Numeric"
+                       Text="{Binding Age}"
+                       BackgroundColor="Transparent"
+                       PlaceholderColor="#888"
+                       TextColor="#222" />
+            </Border>
+
+            <Border Stroke="#CCCCCC" StrokeShape="RoundRectangle 10" BackgroundColor="White" Padding="10">
+                <Entry Placeholder="Address"
+                       Text="{Binding Address}"
+                       BackgroundColor="Transparent"
+                       PlaceholderColor="#888"
+                       TextColor="#222" />
+            </Border>
+
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center" Margin="0,20,0,0">
+                <Button Text="💾 Save"
+                        Command="{Binding SaveCommand}"
+                        BackgroundColor="#005BBB"
+                        TextColor="White"
+                        WidthRequest="140"
+                        CornerRadius="10" />
+
+                <Button Text="✖ Cancel"
+                        Command="{Binding CancelCommand}"
+                        BackgroundColor="#CCCCCC"
+                        TextColor="Black"
+                        WidthRequest="120"
+                        CornerRadius="10" />
             </HorizontalStackLayout>
 
         </VerticalStackLayout>
