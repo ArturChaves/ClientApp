@@ -42,12 +42,14 @@ namespace ClientApp.ViewModels
             };
 
             _clientService.AddClient(newClient);
-            await Shell.Current.GoToAsync(".."); // Volta à tela anterior
+            Application.Current.CloseWindow(Application.Current.Windows.Last());
+
         }
 
         private async void Cancel()
         {
-            await Shell.Current.GoToAsync("..");
+            Application.Current.CloseWindow(Application.Current.Windows.Last());
+
         }
     }
 }

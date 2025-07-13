@@ -58,12 +58,14 @@ namespace ClientApp.ViewModels
             };
 
             _clientService.UpdateClient(_originalClient, updated);
-            await Shell.Current.GoToAsync("..");
+            Application.Current.CloseWindow(Application.Current.Windows.Last());
+
         }
 
         private async void Cancel()
         {
-            await Shell.Current.GoToAsync("..");
+            Application.Current.CloseWindow(Application.Current.Windows.Last());
+
         }
     }
 }
