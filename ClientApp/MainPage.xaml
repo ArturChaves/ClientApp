@@ -1,0 +1,29 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientApp.MainPage"
+             Title="ClientApp - Home">
+
+    <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center" HorizontalOptions="Center">
+
+        <Label Text="Welcome to ClientApp"
+               FontSize="32"
+               HorizontalOptions="Center"
+               FontAttributes="Bold" />
+
+        <Label Text="Select an action:"
+               FontSize="20"
+               HorizontalOptions="Center" />
+
+        <Button Text="➕ Add New Client"
+                FontSize="18"
+                Clicked="OnAddClientClicked"
+                WidthRequest="250" />
+
+        <Button Text="📋 View or Edit Clients"
+                FontSize="18"
+                Clicked="OnViewClientsClicked"
+                WidthRequest="250" />
+
+
+    </VerticalStackLayout>
+</ContentPage>
