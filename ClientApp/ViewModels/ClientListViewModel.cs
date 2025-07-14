@@ -47,16 +47,17 @@ namespace ClientApp.ViewModels
             if (SelectedClient != null)
             {
                 var page = ServiceHelper.GetService<EditClientPage>();
+                var window = new Window(page);
+
                 if (page.BindingContext is EditClientViewModel vm)
                 {
                     vm.LoadClient(SelectedClient);
+                    vm.SetWindow(window); // ✅ tem que estar AQUI dentro!
                 }
 
-                var window = new Window(page);
                 Application.Current.OpenWindow(window);
             }
         }
-
 
         private async void OnDelete()
         {
@@ -70,7 +71,7 @@ namespace ClientApp.ViewModels
                 if (confirm)
                 {
                     _clientService.RemoveClient(SelectedClient);
-                    SelectedClient = null; // limpa a seleção
+                    SelectedClient = null;
                 }
             }
         }

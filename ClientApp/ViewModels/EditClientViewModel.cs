@@ -10,6 +10,8 @@ namespace ClientApp.ViewModels
         private readonly ClientService _clientService;
         private Client _originalClient;
 
+        private Window _currentWindow;
+
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string Age { get; set; }
@@ -24,6 +26,11 @@ namespace ClientApp.ViewModels
 
             SaveCommand = new RelayCommand(Save);
             CancelCommand = new RelayCommand(Cancel);
+        }
+
+        public void SetWindow(Window window)
+        {
+            _currentWindow = window;
         }
 
         public void LoadClient(Client client)
@@ -41,11 +48,11 @@ namespace ClientApp.ViewModels
             OnPropertyChanged(nameof(Address));
         }
 
-        private async void Save()
+        private void Save()
         {
             if (!int.TryParse(Age, out int parsedAge))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Age must be a number.", "OK");
+                _ = Application.Current.MainPage.DisplayAlert("Error", "Age must be a number.", "OK");
                 return;
             }
 
@@ -58,14 +65,15 @@ namespace ClientApp.ViewModels
             };
 
             _clientService.UpdateClient(_originalClient, updated);
-            Application.Current.CloseWindow(Application.Current.Windows.Last());
 
+            if (_currentWindow is not null)
+                Application.Current.CloseWindow(_currentWindow);
         }
 
-        private async void Cancel()
+        private void Cancel()
         {
-            Application.Current.CloseWindow(Application.Current.Windows.Last());
-
+            if (_currentWindow is not null)
+                Application.Current.CloseWindow(_currentWindow);
         }
     }
 }
