@@ -42,16 +42,20 @@ namespace ClientApp.ViewModels
             DeleteCommand = new RelayCommand(OnDelete, () => SelectedClient != null);
         }
 
-        private async void OnEdit()
+        private void OnEdit()
         {
             if (SelectedClient != null)
             {
-                var query = new Dictionary<string, object>
-                {
-                    { "client", SelectedClient }
-                };
+                var page = ServiceHelper.GetService<EditClientPage>();
+                var window = new Window(page);
 
-                await Shell.Current.GoToAsync(nameof(EditClientPage), query);
+                if (page.BindingContext is EditClientViewModel vm)
+                {
+                    vm.LoadClient(SelectedClient);
+                    vm.SetWindow(window); // ✅ tem que estar AQUI dentro!
+                }
+
+                Application.Current.OpenWindow(window);
             }
         }
 
@@ -67,7 +71,7 @@ namespace ClientApp.ViewModels
                 if (confirm)
                 {
                     _clientService.RemoveClient(SelectedClient);
-                    SelectedClient = null; // limpa a seleção
+                    SelectedClient = null;
                 }
             }
         }
